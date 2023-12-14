@@ -21,16 +21,16 @@
 - Stickers
 - Emojis
 - Silenciar / bloquear
----
-
-**Archivar chats**
-
+- Archivar chat
+- Búsqueda de mensajes
+- Notificaciones
+- Historial de lectura (mensaje ya leido)
 ---
 
 **Grupos**
 
 - Funcionalidades anteriores de chat
-- Metadatos (fecha creacion, numero miembros, etc.)
+- Metadatos (fecha creación, numero miembros, etc.)
 - Permisos (admin, mod, etc.)
 - Log de usuarios anteriores
 - Añadir nuevos usuarios
