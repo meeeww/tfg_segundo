@@ -4,10 +4,25 @@
 
 **Índice**
 
+- Menu
 - Chats
-- Archivar chats
 - Grupos
 - Perfiles
+- Ajustes
+---
+
+**Menu**
+
+- Lista de chats
+- Filtrado
+    - Lista de grupos
+    - Lista de chats individuales 
+    - No leidos
+- Barra de busqueda
+- Nuevo chat (individual / grupo)
+- Chats archivados
+- Personas bloqueadas
+- Ajustes
 ---
 
 **Chat**
@@ -24,7 +39,7 @@
 - Archivar chat
 - Búsqueda de mensajes
 - Notificaciones
-- Historial de lectura (mensaje ya leido)
+- Historial de lectura (mensaje ya leído)
 ---
 
 **Grupos**
@@ -45,6 +60,34 @@
 - Descripción
 - Foto
 - Amigos en común
+- Contactos
+---
+
+**Ajustes**
+
+- Información general
+    - Nombre
+    - Nombre de usuario
+    - Email
+    - Contraseña
+    - Foto de perfil
+    - Estado
+- Autenticación (2FA)
+- Privacidad
+    - Quien puede mandar mensajes
+    - Quien puede ver mi estado / descripción / foto
+    - Quien puede ver mi nombre (nombre de usuario público para todo el mundo)
+- Notificaciones
+    - Activar / desactivar
+- Configuración de chats
+    - Eliminar todos los chats / mensajes
+    - Salir de todos los grupos
+    - Archivar todos
+- Personalización
+    - Español / Ingles
+    - Temas
+- Eliminar / desactivar cuenta
+- Ayuda
 
 
 
