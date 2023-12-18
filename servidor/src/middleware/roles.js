@@ -1,5 +1,3 @@
-// Necesita cambios
-
 function admin(req, res, next) {
     if (req.user.rol < 20)
         return res.status(403).send({
@@ -11,20 +9,8 @@ function admin(req, res, next) {
     next();
 }
 
-function viewer(req, res, next) {
-    if (!req.user.rol)
-        if (req.user.rol != 0)
-            return res.status(403).send({
-                status: 403,
-                success: false,
-                error: "Acceso denegado.",
-            });
-
-    next();
-}
-
 function self(req, res, next) {
-    if (req.body.id_usuario != req.user.id && req.user.rol < 20)
+    if (req.body.id_usuario != req.user.id) // req.user es el usuario del token, req.body es el usuario que se envia en el http request
         return res.status(403).send({
             status: 403,
             success: false,
@@ -34,4 +20,4 @@ function self(req, res, next) {
     next();
 }
 
-module.exports = { admin, viewer, self };
+module.exports = { admin, self };

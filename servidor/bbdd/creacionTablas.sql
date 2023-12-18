@@ -83,6 +83,7 @@ CREATE TABLE usuarios_servidores (
   ID_Servidor INT,
   ID_Usuario INT,
   Estado_Usuario INT,
+  Rol_Usuario INT,
   Fecha_Entrada INT,
   Fecha_Salida INT,
   FOREIGN KEY (ID_Servidor) REFERENCES servidores(ID_Servidor),
