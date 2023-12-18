@@ -1,0 +1,3 @@
+mysqldump -u usuario -p mi_base_de_datos > mi_base_de_datos_backup.sql
+
+hay que hacerlo diariamente en un ec2 de aws
