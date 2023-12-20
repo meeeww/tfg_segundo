@@ -124,6 +124,23 @@ CREATE TABLE reportes (
   FOREIGN KEY (ID_Usuario_Reportado) REFERENCES usuarios(ID_Usuario)
 );
 
+CREATE TABLE notificaciones (
+  ID_Notificacion INT AUTO_INCREMENT PRIMARY KEY,
+  ID_Usuario INT NOT NULL,
+  Tipo_Notificacion VARCHAR(32) NOT NULL,
+  Estado_Notificacion INT DEFAULT 0 NOT NULL,
+  Fecha_Notificacion INT NOT NULL,
+  Mensaje_Notificacion TEXT,
+  FOREIGN KEY (ID_Usuario) REFERENCES usuarios(ID_Usuario)
+);
+
+CREATE TABLE mensajes_sistema (
+  ID_Mensaje_Sistema INT AUTO_INCREMENT PRIMARY KEY,
+  Contenido TEXT NOT NULL,
+  Fecha_Envio INT NOT NULL,
+  Tipo_Mensaje_Sistema VARCHAR(32) NOT NULL
+);
+
 ALTER TABLE usuarios
 ADD CONSTRAINT usuarios_ibfk_1
 FOREIGN KEY (Foto_Usuario) REFERENCES multimedia(ID_Multimedia);
