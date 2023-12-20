@@ -1,0 +1,22 @@
+/*Global styles*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&display=swap");
+
+:root {
+  --color-fondo-componentes: #fafafc;
+  --color-principal: #3377ff;
+  --color-principal-dark: #3568d4;
+  --color-principal-light: #99bbff;
+  --color-principal-lighter: #e3edff;
+  --color-error: #ff3b3b;
+  --color-warning: #ffcc00;
+  --color-info: #0063f7;
+  --color-success: #06c270;
+  --color-dark: #3a3a3c;
+  --color-dark-2: #6b7588;
+  --color-dark-3: #8f90a6;
+  --color-dark-4: #c7c9d9;
+  --color-light: #c7c9d9;
+  --color-light-1: #ebebf0;
+  --color-light-2: #f2f2f5;
+  --color-light-3: #fafafc;
+}
