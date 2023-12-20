@@ -1,14 +1,15 @@
 CREATE TABLE usuarios (
   ID_Usuario INT AUTO_INCREMENT PRIMARY KEY,
-  Nombre_Usuario VARCHAR(32),
-  Apellido_Usuario VARCHAR(32),
-  Descripcion_Usuario VARCHAR(128),
-  Nick_Usuario VARCHAR(16),
-  Email_Usuario VARCHAR(128),
-  Contra_Usuario VARCHAR(256),
-  Foto_Usuario INT,
-  Fecha_Creacion TIMESTAMP,
-  Estado_Cuenta INT
+  Nombre_Usuario VARCHAR(32) NOT NULL,
+  Apellido_Usuario VARCHAR(32) NOT NULL,
+  Descripcion_Usuario VARCHAR(128) DEFAULT "¡Hola!",
+  Nick_Usuario VARCHAR(16) NOT NULL,
+  Email_Usuario VARCHAR(128) NOT NULL,
+  Contra_Usuario VARCHAR(256) NOT NULL,
+  Foto_Usuario INT NULL,
+  Fecha_Creacion INT NOT NULL,
+  Estado_Cuenta INT DEFAULT 0 NOT NULL,
+  Verificacion_Cuenta TINYINT DEFAULT 0 NOT NULL
 );
 
 CREATE TABLE configuraciones (
@@ -21,12 +22,12 @@ CREATE TABLE configuraciones (
 
 CREATE TABLE sesiones (
   ID_Sesion INT AUTO_INCREMENT PRIMARY KEY,
-  ID_Usuario INT,
-  Token_Sesion VARCHAR(256),
-  Fecha_Inicio TIMESTAMP,
-  Fecha_Expiracion TIMESTAMP,
-  Estado_Sesion INT,
-  Ultima_Actividad TIMESTAMP,
+  ID_Usuario INT NOT NULL,
+  Token_Sesion VARCHAR(256) NOT NULL,
+  Fecha_Inicio INT NOT NULL,
+  Fecha_Expiracion INT NOT NULL,
+  Estado_Sesion INT DEFAULT 0,
+  Ultima_Actividad INT,
   Dispositivo VARCHAR(256),
   FOREIGN KEY (ID_Usuario) REFERENCES usuarios(ID_Usuario)
 );
@@ -38,7 +39,7 @@ CREATE TABLE logs (
   Tipo_Log INT,
   Mensaje_Log TEXT,
   Nivel INT,
-  Fecha_Creacion TIMESTAMP,
+  Fecha_Creacion INT,
   Datos JSON,
   FOREIGN KEY (ID_Usuario) REFERENCES usuarios(ID_Usuario),
   FOREIGN KEY (ID_Sesion) REFERENCES sesiones(ID_Sesion)
@@ -48,7 +49,7 @@ CREATE TABLE amigos (
   ID_Relacion INT AUTO_INCREMENT PRIMARY KEY,
   ID_Usuario_Recibe INT,
   ID_Usuario_Envia INT,
-  Fecha_Creacion TIMESTAMP,
+  Fecha_Creacion INT,
   Estado_Relacion INT,
   FOREIGN KEY (ID_Usuario_Recibe) REFERENCES usuarios(ID_Usuario),
   FOREIGN KEY (ID_Usuario_Envia) REFERENCES usuarios(ID_Usuario)
@@ -62,7 +63,7 @@ CREATE TABLE multimedia (
   URL_Multimedia VARCHAR(64),
   Duracion_Multimedia INT,
   Estado_Multimedia INT,
-  Fecha_Creacion TIMESTAMP,
+  Fecha_Creacion INT,
   FOREIGN KEY (ID_Usuario) REFERENCES usuarios(ID_Usuario)
 );
 
@@ -72,7 +73,7 @@ CREATE TABLE servidores (
   Nombre_Servidor VARCHAR(32),
   Descripcion_Servidor TEXT,
   Imagen_Servidor INT,
-  Fecha_Creacion TIMESTAMP,
+  Fecha_Creacion INT,
   Modo_Mensajes INT,
   FOREIGN KEY (ID_Usuario_Creador) REFERENCES usuarios(ID_Usuario),
   FOREIGN KEY (Imagen_Servidor) REFERENCES multimedia(ID_Multimedia)
@@ -82,8 +83,9 @@ CREATE TABLE usuarios_servidores (
   ID_Servidor INT,
   ID_Usuario INT,
   Estado_Usuario INT,
-  Fecha_Entrada TIMESTAMP,
-  Fecha_Salida TIMESTAMP,
+  Rol_Usuario INT,
+  Fecha_Entrada INT,
+  Fecha_Salida INT,
   FOREIGN KEY (ID_Servidor) REFERENCES servidores(ID_Servidor),
   FOREIGN KEY (ID_Usuario) REFERENCES usuarios(ID_Usuario)
 );
@@ -94,8 +96,8 @@ CREATE TABLE mensajes (
   ID_Usuario_Creador INT,
   Contenido_Mensaje TEXT,
   Tipo_Mensaje INT,
-  Fecha_Envio TIMESTAMP,
-  Fecha_Recepcion TIMESTAMP,
+  Fecha_Envio INT,
+  Fecha_Recepcion INT,
   Estado_Mensaje INT,
   ID_Multimedia INT,
   FOREIGN KEY (ID_Usuario_Creador) REFERENCES usuarios(ID_Usuario),
@@ -107,7 +109,7 @@ CREATE TABLE reacciones_mensajes (
   ID_Mensaje INT,
   ID_Usuario INT,
   Tipo_Reaccion VARCHAR(32),
-  Fecha_Reaccion TIMESTAMP,
+  Fecha_Reaccion INT,
   FOREIGN KEY (ID_Mensaje) REFERENCES mensajes(ID_Mensaje),
   FOREIGN KEY (ID_Usuario) REFERENCES usuarios(ID_Usuario)
 );
@@ -117,7 +119,7 @@ CREATE TABLE reportes (
   ID_Usuario_Reporta INT,
   ID_Usuario_Reportado INT,
   Descripcion_Reporte TEXT,
-  Fecha_Reporte TIMESTAMP,
+  Fecha_Reporte INT,
   FOREIGN KEY (ID_Usuario_Reporta) REFERENCES usuarios(ID_Usuario),
   FOREIGN KEY (ID_Usuario_Reportado) REFERENCES usuarios(ID_Usuario)
 );
