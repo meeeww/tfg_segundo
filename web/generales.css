@@ -1,6 +1,10 @@
 /*Global styles*/
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&display=swap");
 
+* {
+  font-family: "Inter";
+}
+
 :root {
   --color-fondo-componentes: #fafafc;
   --color-principal: #3377ff;
