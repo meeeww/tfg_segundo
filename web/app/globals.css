@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-}
-
 * {
   box-sizing: border-box;
   min-width: 0;
