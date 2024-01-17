@@ -3,8 +3,9 @@ import Header from "./components/ui/index/header";
 
 export default function Home() {
   return (
-    <main className="">
+    <>
       <Header />
-    </main>
+      <main className="px-[112px]"></main>
+    </>
   );
 }
