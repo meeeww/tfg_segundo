@@ -17,7 +17,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="w-full h-[75px] flex items-center justify-between md:justify-center gap-10 px-4 relative bg-sky-50">
+    <header className="w-[99dvw] h-[75px] flex items-center justify-between md:justify-center gap-10 px-4 relative bg-sky-50">
       <h2 className="text-2xl font-bold">
         Chit<span className="text-sky-500">Chat</span>
       </h2>
