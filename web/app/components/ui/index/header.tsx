@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import HeaderLinks from "./headerLinks";
+import { Button } from "../button";
 
 const Header = () => {
   const mobileMenu = () => {
