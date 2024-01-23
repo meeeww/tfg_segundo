@@ -35,7 +35,7 @@ const getSalt = require("../../utils/getSalt");
 // Set del router
 const router = express.Router();
 
-router.get("/self", auth, self, async (req, res) => {
+router.get("/self", [auth, self], async (req, res) => {
   // /sesiones/self
   // Recibir el usuario actual
 
@@ -47,5 +47,23 @@ router.get("/self", auth, self, async (req, res) => {
   }
 });
 
+router.post("/register", async (req, res) => {
+  // /sesiones/login
+  // Registrar sesión, crear token
+});
+
+router.post("/login", async (req, res) => {
+  // /sesiones/login
+  // Iniciar sesión, crear token
+});
+
+router.put("/update", [auth, self], async (req, res) => {
+  // /sesiones/update
+  // Actualizar usuario
+});
+
+router.delete("/logout", [auth, self], async (req, res) => {});
+
+router.delete("/logoutAll", [auth, self], async (req, res) => {});
+
 module.exports = router;
-    
