@@ -26,9 +26,11 @@ app.use(cors());
 
 // Importamos rutas
 const usuariosRouter = require("./routes/main/usuarios");
+const sesionesRouter = require("./routes/main/sesiones");
 
 // Seteamos rutas
 app.use("/usuarios", usuariosRouter);
+app.use("/sesiones", sesionesRouter);
 
 // Iniciamos el servidor
 app.listen(process.env.PORT, () => {

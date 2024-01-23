@@ -29,7 +29,7 @@ const {
 } = require("../../queries/usuariosDAL");
 
 // Importamos utils
-const returnUser = require("../../utils/auth/returnUser");
+const returnUserSelf = require("../../utils/auth/returnUserSelf");
 const getSalt = require("../../utils/getSalt");
 
 // Set del router
