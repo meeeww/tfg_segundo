@@ -1,5 +1,5 @@
 const getSalt = () => {
-  const saltRounds = 10;
+  const saltRounds = 12;
   return saltRounds;
 };
 

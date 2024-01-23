@@ -258,13 +258,7 @@ router.put("/", async (req, res) => {
   // Actualizamos un usuario
 
   try {
-    const usuarioId = req.params.id;
     const datosUsuario = usuarioDTO.fromReqBody(req.body);
-
-    // Asegurarse de que el ID del usuario es el mismo que se pasa en la URL
-    if (datosUsuario.ID_Usuario !== usuarioId) {
-      return res.status(400).json({ success: false, mensaje: "Los IDs no coinciden" });
-    }
 
     // Ajustar los parámetros según la consulta SQL
     const parametros = [
@@ -277,7 +271,7 @@ router.put("/", async (req, res) => {
       datosUsuario.Fecha_Creacion,
       datosUsuario.Estado_Cuenta,
       datosUsuario.Verificacion_Cuenta,
-      usuarioId,
+      datosUsuario.ID_Usuario,
     ];
 
     db.query(updateUsuarioQuery, parametros, (err, result) => {
@@ -297,17 +291,27 @@ router.put("/contra", async (req, res) => {
 
   try {
     const datosUsuario = usuarioDTO.fromReqBody(req.body);
+    const contra = req.body.contra;
+
+    console.log(contra);
 
     // Encriptamos la contraseña
-    const contraseñaEncriptada = await bcrypt.hash(datosUsuario.Contraseña, getSalt());
-
-    const parametros = [datosUsuario.Contraseña, datosUsuario.ID_Usuario];
-
-    db.query(updateUsuarioContraQuery, parametros, (err, result) => {
+    await bcrypt.hash(contra, getSalt(), (err, hash) => {
       if (err) {
-        return res.status(500).json({ success: false, mensaje: "Error al actualizar la contraseña", error: err });
+        console.error("Error al encriptar la contraseña;", err);
+        throw err;
       }
-      res.status(200).json({ success: true, mensaje: "Contraseña actualizada con éxito" });
+
+      const parametros = [hash, datosUsuario.ID_Usuario];
+
+      db.query(updateUsuarioContraQuery, parametros, (err, result) => {
+        if (err) {
+          return res.status(500).json({ success: false, mensaje: "Error al actualizar la contraseña", error: err });
+        }
+        res.status(200).json({ success: true, mensaje: "Contraseña actualizada con éxito" });
+      });
+
+      return hash;
     });
   } catch (error) {
     res.status(500).json({ success: false, mensaje: "Error del servidor", error: error });

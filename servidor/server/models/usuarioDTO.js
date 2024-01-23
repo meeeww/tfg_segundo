@@ -1,5 +1,5 @@
 class usuarioDTO {
-  constructor(S_Id, S_Nombre, S_Apellido, S_Descripcion, S_Nick, S_Email, S_Contra, S_Foto, S_Fecha, S_Estado, S_Verificacion) {
+  constructor(S_Id, S_Nombre, S_Apellido, S_Descripcion, S_Nick, S_Email, S_Foto, S_Fecha, S_Estado, S_Verificacion) {
     this.ID_Usuario = S_Id;
     this.Nombre_Usuario = S_Nombre;
     this.Apellido_Usuario = S_Apellido;
