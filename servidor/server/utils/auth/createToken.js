@@ -14,6 +14,8 @@ const { createSesionQuery } = require("../../queries/sesionesDAL");
 
 function createToken(id, res) {
   try {
+    process.env.SECRETPASS
+    const token = jwt.sign(payload, claveSecreta, { algorithm: 'HS256' });
 
     const sesion = new SesionDTO(1, 123, 'token123', 1618033988, 1618033999, 0, 1618033989, 'DispositivoEjemplo');
 
