@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Header from "./components/ui/index/header";
-import Hero from "./components/ui/index/hero";
+import Header from "../components/ui/index/header";
+import Hero from "../components/ui/index/hero";
 
 export default function Home() {
   return (
