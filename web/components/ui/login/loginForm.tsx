@@ -13,11 +13,13 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { ArrowRightFromLine } from "lucide-react";
 
 const formSchema = z
   .object({
-    emailAddress: z.string().email(),
-    password: z.string().min(3),
+    emailAddress: z.string().email({ message: "Invalid email address" }),
+    password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
     passwordConfirm: z.string(),
   })
   .refine(
@@ -46,8 +48,9 @@ const LoginForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="max-w-md w-full flex flex-col gap-4 border rounded-md p-8"
+        className="max-w-md w-full flex flex-col gap-4 border rounded-md p-8 m-2"
       >
+        <h3 className="text-xl font-semibold">Login</h3>
         <FormField
           control={form.control}
           name="emailAddress"
@@ -93,6 +96,11 @@ const LoginForm = () => {
             );
           }}
         />
+
+        <Link href={"/register"} className="text-sm text-sky-500 flex items-center">
+          Create an account
+          <ArrowRightFromLine size={16} className="ml-2" />
+        </Link>
 
         <Button type="submit" className="w-full">
           Submit
