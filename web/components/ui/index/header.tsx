@@ -2,7 +2,7 @@
 
 import { Menu } from "lucide-react";
 import HeaderLinks from "./headerLinks";
-import { Button } from "../button";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const mobileMenu = () => {
