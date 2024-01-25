@@ -50,7 +50,7 @@ const LoginForm = () => {
         onSubmit={form.handleSubmit(handleSubmit)}
         className="max-w-md w-full flex flex-col gap-4 border rounded-md p-8 m-2"
       >
-        <h3 className="text-xl font-semibold">Login</h3>
+        <h3 className="text-xl font-semibold">Log in</h3>
         <FormField
           control={form.control}
           name="emailAddress"
@@ -103,7 +103,7 @@ const LoginForm = () => {
         </Link>
 
         <Button type="submit" className="w-full">
-          Submit
+          Log in
         </Button>
       </form>
     </Form>

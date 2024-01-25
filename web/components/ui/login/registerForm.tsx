@@ -22,8 +22,8 @@ const formSchema = z
     password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
     passwordConfirm: z.string(),
     userName: z.string(),
-    name: z.string(),
-    surname: z.string(),
+    name: z.string().min(1, { message: "Please enter your name" }),
+    surname: z.string().min(1, { message: "Please enter your surname" }),
   })
   .refine(
     (data) => {
@@ -63,7 +63,7 @@ const RegisterForm = () => {
         className="max-w-md w-full flex flex-col gap-4 border rounded-md p-8 m-2"
       >
         <h3 className="text-xl font-semibold">Register</h3>
-        <div>
+        <div className="flex gap-2">
           <FormField
             control={form.control}
             name="name"
@@ -73,6 +73,21 @@ const RegisterForm = () => {
                   <FormLabel>Name</FormLabel>
                   <FormControl>
                     <Input placeholder="Name" type="text" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+          <FormField
+            control={form.control}
+            name="surname"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel>Surname</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Surname" type="text" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -126,13 +141,13 @@ const RegisterForm = () => {
           }}
         />
 
-        <Link href={"/register"} className="text-sm text-sky-500 flex items-center">
+        <Link href={"/login"} className="text-sm text-sky-500 flex items-center">
           Already have an account?
           <ArrowRightFromLine size={16} className="ml-2" />
         </Link>
 
         <Button type="submit" className="w-full">
-          Submit
+          Register
         </Button>
       </form>
     </Form>
