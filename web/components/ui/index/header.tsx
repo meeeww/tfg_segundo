@@ -24,7 +24,7 @@ const Header = () => {
       <h2 className="text-2xl font-bold">
         Chit<span className="text-sky-500">Chat</span>
       </h2>
-      <HeaderLinks links={enlaces} clase={estilos} />
+      <HeaderLinks links={enlaces} estilos={estilos} />
       <Button className=" hidden md:block">Get Started</Button>
       <Button className="block md:hidden bg-[none] hover:bg-[none]" onClick={mobileMenu}>
         <Menu className="text-black" />

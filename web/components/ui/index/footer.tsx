@@ -22,7 +22,7 @@ const Footer = () => {
         <Separator className="w-full md:hidden" />
         <HeaderLinks
           links={enlaces}
-          clase="text-neutral-500 text-center flex flex-col md:flex-row w-full"
+          estilos="text-neutral-500 text-center flex flex-col md:flex-row w-full"
         />
         <div className="flex gap-4 items-center justify-center">
           <span>1</span>
