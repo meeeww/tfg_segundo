@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import React from "react";
 
 interface Link {
   text: string;
@@ -18,7 +19,7 @@ const HeaderLinks: React.FC<props> = ({ links }) => {
         <Link
           key={index}
           href={link.url}
-          className="md:hover:bg-sky-200 px-2 py-1 rounded-md transition-all"
+          className="px-2 py-1 rounded-md transition-all"
         >
           {link.text}
         </Link>
