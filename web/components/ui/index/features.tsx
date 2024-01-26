@@ -25,7 +25,7 @@ const card = [
 
 const Features = () => {
   return (
-    <div className="w-full h-full py-8">
+    <div className="w-full h-full py-8" id="features">
       <h2 className="md:text-[60px] text-4xl text-center font-semibold flex flex-col gap-1 md:gap-8">
         <span>Connect, Chat, and</span>
         <span>Create Memories -</span>

@@ -9,7 +9,7 @@ const Footer = () => {
     { text: "Home", url: "/" },
     { text: "About Us", url: "/about-us" },
     { text: "Pricing", url: "/pricing" },
-    { text: "Features", url: "/features" },
+    { text: "Features", url: "/#features" },
     { text: "Contact", url: "/contact" },
     { text: "Terms", url: "/terms" },
     { text: "Privacy", url: "/privacy" },

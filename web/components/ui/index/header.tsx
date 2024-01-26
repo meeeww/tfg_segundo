@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import HeaderLinks from "./headerLinks";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/ui/Logo";
+import Link from "next/link";
 
 const Header = () => {
   const mobileMenu = () => {
@@ -13,7 +14,7 @@ const Header = () => {
   const enlaces = [
     { text: "Home", url: "/" },
     { text: "About us", url: "/about" },
-    { text: "Features", url: "/features" },
+    { text: "Features", url: "/#features" },
     { text: "Contact", url: "/contact" },
   ];
 
@@ -22,9 +23,13 @@ const Header = () => {
 
   return (
     <header className="w-full h-[75px] flex items-center justify-between md:justify-center gap-10 px-4 relative bg-sky-50">
-      <Logo estilos="text-2xl font-bold" />
+      <Link href={"/"}>
+        <Logo estilos="text-2xl font-bold" />
+      </Link>
       <HeaderLinks links={enlaces} estilos={estilos} />
-      <Button className=" hidden md:block">Get Started</Button>
+      <Button className=" hidden md:block">
+        <Link href={"/register"}> Get Started</Link>
+      </Button>
       <Button className="block md:hidden bg-[none] hover:bg-[none]" onClick={mobileMenu}>
         <Menu className="text-black" />
       </Button>
