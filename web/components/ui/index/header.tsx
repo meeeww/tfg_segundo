@@ -3,7 +3,6 @@
 import { Menu } from "lucide-react";
 import HeaderLinks from "./headerLinks";
 import { Button } from "@/components/ui/button";
-import Logo from "../logo";
 
 const Header = () => {
   const mobileMenu = () => {
@@ -22,8 +21,10 @@ const Header = () => {
 
   return (
     <header className="w-full h-[75px] flex items-center justify-between md:justify-center gap-10 px-4 relative bg-sky-50">
-      <Logo estilos="text-2xl font-bold" />
-      <HeaderLinks links={enlaces} estilos={estilos} />
+      <h2 className="text-2xl font-bold">
+        Chit<span className="text-sky-500">Chat</span>
+      </h2>
+      <HeaderLinks links={enlaces} clase={estilos} />
       <Button className=" hidden md:block">Get Started</Button>
       <Button className="block md:hidden bg-[none] hover:bg-[none]" onClick={mobileMenu}>
         <Menu className="text-black" />

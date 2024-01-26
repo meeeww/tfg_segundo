@@ -10,12 +10,12 @@ interface Link {
 
 interface props {
   links: Link[];
-  estilos: string;
+  clase: string;
 }
 
-const HeaderLinks: React.FC<props> = ({ links, estilos }) => {
+const HeaderLinks: React.FC<props> = ({ links, clase }) => {
   return (
-    <ul className={estilos}>
+    <ul className={clase}>
       {links.map((link, index) => (
         <Link key={index} href={link.url} className="px-2 py-1 rounded-md transition-all">
           {link.text}
