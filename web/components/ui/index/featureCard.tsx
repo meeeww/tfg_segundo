@@ -20,7 +20,7 @@ const FeatureCard: React.FC<props> = ({ card }) => {
         {card.map((cardItem, index) => (
           <div
             key={index}
-            className={`w-full h-full flex items-center justify-center flex-col text-center ${
+            className={`w-full h-full flex items-center  flex-col text-center ${
               cardItem.direction ? "md:flex-row-reverse " : "md:flex-row "
             }`}
           >
