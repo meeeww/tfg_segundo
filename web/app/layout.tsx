@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./reset.css";
 import { inter } from "./fonts";
-import Header from "./components/ui/index/header";
+import Header from "@/components/ui/index/header";
 
 export const metadata: Metadata = {
   title: "ChitChat",

@@ -1,7 +1,6 @@
+import Features from "@/components/ui/index/features";
+import Hero from "@/components/ui/index/hero";
 import Image from "next/image";
-import Header from "./components/ui/index/header";
-import Hero from "./components/ui/index/hero";
-import Features from "./components/ui/index/features";
 
 export default function Home() {
   return (
