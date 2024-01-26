@@ -22,9 +22,7 @@ const Header = () => {
         Chit<span className="text-sky-500">Chat</span>
       </h2>
       <HeaderLinks links={enlaces} />
-      <Button className="bg-sky-500 hover:bg-sky-600 transition-all text-white px-4 py-2 rounded-md hidden md:block">
-        Get Started
-      </Button>
+      <Button className=" hidden md:block">Get Started</Button>
       <Button className="block md:hidden bg-[none] hover:bg-[none]" onClick={mobileMenu}>
         <Menu className="text-black" />
       </Button>
