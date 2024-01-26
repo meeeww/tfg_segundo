@@ -3,6 +3,7 @@ import "./globals.css";
 import "./reset.css";
 import { inter } from "./fonts";
 import Header from "@/components/ui/index/header";
+import Footer from "@/components/ui/index/footer";
 
 export const metadata: Metadata = {
   title: "ChitChat",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
