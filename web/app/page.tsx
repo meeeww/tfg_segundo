@@ -6,7 +6,6 @@ import Features from "./components/ui/index/features";
 export default function Home() {
   return (
     <>
-      <Header />
       <main className="px-[19px] md:px-[112px]">
         <Hero />
         <Features />
