@@ -9,7 +9,7 @@
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `x-auth-token` | `header` | **Obligatorio**. Token |
+| `x-auth-token` | `header` | **Obligatorio**. Token como header |
 
 #### Crear sesion a partir de 
 
@@ -30,7 +30,14 @@
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `sesion` | `objeto` | **Obligatorio**. Objeto de la sesion |
+| `ID_Sesion` | `int` | **Obligatorio**. ID de la sesion |
+| `ID_Usuario` | `int` | **Obligatorio**. ID del usuario |
+| `Token_Sesion` | `string` | **Obligatorio**. Token de la sesion |
+| `Fecha_Inicio` | `int` | **Obligatorio**. Fecha de creación de sesion (epoch)  |
+| `Fecha_Expiracion` | `int` | **Obligatorio**. Fecha de expiracion de sesion (epoch) |
+| `Estado_Sesion` | `int (0 inactivo, 1 activo)` | **Obligatorio**. Estado de la sesion |
+| `Ultima_Actividad` | `int` | **Obligatorio**. Fecha de última sesion (epoch) |
+| `Dispositivo` | `string` | **Obligatorio**. Dispositivo de la sesión |
 
 #### Eliminar sesión a partir de token
 
@@ -40,7 +47,8 @@
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `x-auth-token` | `header` | **Obligatorio**. Token |
+| `Token_Sesion` | `string` | **Obligatorio**. Token del usuario |
+| `x-auth-token` | `header` | **Obligatorio**. Token como header |
 
 #### Eliminar todas las sesiones a partir de token
 
@@ -50,4 +58,5 @@
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `x-auth-token` | `header` | **Obligatorio**. Token |
+| `Token_Sesion` | `string` | **Obligatorio**. Token del usuario |
+| `x-auth-token` | `header` | **Obligatorio**. Token como header |
