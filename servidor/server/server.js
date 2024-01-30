@@ -25,10 +25,12 @@ app.use(express.static("public"));
 app.use(cors());
 
 // Importamos rutas
-const pruebasRouter = require("./src/routes/pruebas");
+const usuariosRouter = require("./routes/main/usuarios");
+const sesionesRouter = require("./routes/main/sesiones");
 
 // Seteamos rutas
-app.use("/pruebas", pruebasRouter);
+app.use("/usuarios", usuariosRouter);
+app.use("/sesiones", sesionesRouter);
 
 // Iniciamos el servidor
 app.listen(process.env.PORT, () => {
