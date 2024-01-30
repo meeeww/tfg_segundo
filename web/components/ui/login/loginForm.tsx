@@ -16,21 +16,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { ArrowRightFromLine } from "lucide-react";
 
-const formSchema = z
-  .object({
-    emailAddress: z.string().email({ message: "Invalid email address" }),
-    password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
-    passwordConfirm: z.string(),
-  })
-  .refine(
-    (data) => {
-      return data.password === data.passwordConfirm;
-    },
-    {
-      message: "Passwords do not match",
-      path: ["passwordConfirm"],
-    }
-  );
+const formSchema = z.object({
+  emailAddress: z.string().email({ message: "Invalid email address" }),
+  password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
+  passwordConfirm: z.string(),
+});
 
 const LoginForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -38,7 +28,6 @@ const LoginForm = () => {
     defaultValues: {
       emailAddress: "",
       password: "",
-      passwordConfirm: "",
     },
   });
 
@@ -57,7 +46,7 @@ const LoginForm = () => {
           render={({ field }) => {
             return (
               <FormItem>
-                <FormLabel>Email Address</FormLabel>
+                <FormLabel>Email Address / Username</FormLabel>
                 <FormControl>
                   <Input placeholder="Email address" type="email" {...field} />
                 </FormControl>
@@ -75,21 +64,6 @@ const LoginForm = () => {
                 <FormLabel>Password</FormLabel>
                 <FormControl>
                   <Input placeholder="Password" type="password" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            );
-          }}
-        />
-        <FormField
-          control={form.control}
-          name="passwordConfirm"
-          render={({ field }) => {
-            return (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input placeholder="Confirm password" type="password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
