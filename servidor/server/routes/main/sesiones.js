@@ -48,15 +48,10 @@ router.get("/self", [auth, self], async (req, res) => {
   }
 });
 
-router.post("/register", async (req, res) => {
+router.post("/", async (req, res) => {
   // /sesiones/login
   // Registrar sesión, crear token
   createToken(req, res);
-});
-
-router.post("/login", async (req, res) => {
-  // /sesiones/login
-  // Iniciar sesión, crear token
 });
 
 router.put("/update", [auth, self], async (req, res) => {
