@@ -1,4 +1,4 @@
-class SesionDTO {
+class sesionDTO {
   constructor(S_Id, S_Usuario, S_Token, S_Inicio, S_Expiracion, S_Estado, S_Actividad, S_Dispositivo) {
     this.ID_Sesion = S_Id;
     this.ID_Usuario = S_Usuario;
@@ -11,7 +11,7 @@ class SesionDTO {
   }
 
   static fromJson(sesion) {
-    return new usuarioDTO(
+    return new sesionDTO(
       sesion.ID_Sesion,
       sesion.ID_Usuario,
       sesion.Token_Sesion,
@@ -24,7 +24,7 @@ class SesionDTO {
   }
 
   static fromReqBody(reqBody) {
-    return new usuarioDTO(
+    return new sesionDTO(
       reqBody.ID_Sesion,
       reqBody.ID_Usuario,
       reqBody.Token_Sesion,
@@ -36,3 +36,5 @@ class SesionDTO {
     );
   }
 }
+
+module.exports = sesionDTO;

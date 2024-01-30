@@ -31,11 +31,12 @@ const {
 // Importamos utils
 const returnUserSelf = require("../../utils/auth/returnUserSelf");
 const getSalt = require("../../utils/getSalt");
+const createToken = require("../../utils/auth/createToken");
 
 // Set del router
 const router = express.Router();
 
-router.get("/self", auth, self, async (req, res) => {
+router.get("/self", [auth, self], async (req, res) => {
   // /sesiones/self
   // Recibir el usuario actual
 
@@ -47,5 +48,24 @@ router.get("/self", auth, self, async (req, res) => {
   }
 });
 
+router.post("/register", async (req, res) => {
+  // /sesiones/login
+  // Registrar sesión, crear token
+  createToken(req, res);
+});
+
+router.post("/login", async (req, res) => {
+  // /sesiones/login
+  // Iniciar sesión, crear token
+});
+
+router.put("/update", [auth, self], async (req, res) => {
+  // /sesiones/update
+  // Actualizar usuario
+});
+
+router.delete("/logout", [auth, self], async (req, res) => {});
+
+router.delete("/logoutAll", [auth, self], async (req, res) => {});
+
 module.exports = router;
-    
