@@ -31,6 +31,7 @@ const {
 // Importamos utils
 const returnUserSelf = require("../../utils/auth/returnUserSelf");
 const getSalt = require("../../utils/getSalt");
+const createToken = require("../../utils/auth/createToken");
 
 // Set del router
 const router = express.Router();
@@ -50,6 +51,7 @@ router.get("/self", [auth, self], async (req, res) => {
 router.post("/register", async (req, res) => {
   // /sesiones/login
   // Registrar sesión, crear token
+  createToken(req, res);
 });
 
 router.post("/login", async (req, res) => {

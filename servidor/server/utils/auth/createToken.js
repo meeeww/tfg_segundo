@@ -12,22 +12,27 @@ const sesionDTO = require("../../models/sesionDTO");
 // Importamos las queries
 const { createSesionQuery } = require("../../queries/sesionesDAL");
 
-function createToken(id, res) {
-  try {
-    process.env.SECRETPASS
-    const token = jwt.sign(payload, claveSecreta, { algorithm: 'HS256' });
+// Importamos utils
+const getActualTime = require("../../utils/getActualTime");
 
-    const sesion = new SesionDTO(1, 123, 'token123', 1618033988, 1618033999, 0, 1618033989, 'DispositivoEjemplo');
+function createToken(req, res) {
+  try {
+    const sesion = sesionDTO.fromReqBody(req.body);
+
+    const token = jwt.sign({ id: sesion.ID_Usuario }, process.env.SECRETPASS, { algorithm: "HS256" }); // falta añadir los roles
 
     // Preparar los parámetros para la consulta SQL
     const parametros = [
       sesion.ID_Usuario,
-      sesion.Token_Sesion,
-      sesion.Fecha_Inicio,
-      sesion.Fecha_Expiracion,
-      sesion.Ultima_Actividad,
-      sesion.Dispositivo
+      token,
+      getActualTime(false),
+      getActualTime(true),
+      1,
+      0,
+      sesion.Dispositivo,
     ];
+
+    console.log(parametros)
 
     db.query(createSesionQuery, parametros, (err, result) => {
       if (err) {
@@ -36,6 +41,7 @@ function createToken(id, res) {
       res.status(200).json({ success: true, mensaje: "Sesión creada con éxito", token: token, result: result });
     });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ success: false, mensaje: "Error del servidor", error: error });
   }
 }
