@@ -10,7 +10,7 @@ function admin(req, res, next) {
 }
 
 function self(req, res, next) {
-    if (req.body.id_usuario != req.user.id) // req.user es el usuario del token, req.body es el usuario que se envia en el http request
+    if (req.body.ID_Usuario != req.user.id) // req.user es el usuario del token, req.body es el usuario que se envia en el http request
         return res.status(403).send({
             status: 403,
             success: false,
