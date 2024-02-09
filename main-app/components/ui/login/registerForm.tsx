@@ -24,6 +24,7 @@ const formSchema = z
     userName: z.string(),
     name: z.string().min(1, { message: "Please enter your name" }),
     surname: z.string().min(1, { message: "Please enter your surname" }),
+    username: z.string(),
   })
   .refine(
     (data) => {
@@ -44,6 +45,17 @@ const formSchema = z
     }
   );
 
+interface registerParams {
+  Nombre_Usuario: string;
+  Apellido_Usuario: string;
+  Descripcion_Usuario: string;
+  Nick_Usuario: string;
+  Email_Usuario: string;
+  Fecha_Creacion: number;
+  Estado_Cuenta: 0 | 1 | 2;
+  Verificacion_Cuenta: 0 | 1;
+}
+
 const RegisterForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -54,7 +66,18 @@ const RegisterForm = () => {
     },
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    const params: registerParams = {
+      Nombre_Usuario: form.getValues("name"),
+      Apellido_Usuario: form.getValues("surname"),
+      Descripcion_Usuario: "",
+      Nick_Usuario: form.getValues("username"),
+      Email_Usuario: form.getValues("emailAddress"),
+      Fecha_Creacion: 0,
+      Estado_Cuenta: 0,
+      Verificacion_Cuenta: 0,
+    };
+  };
 
   return (
     <Form {...form}>
@@ -95,6 +118,21 @@ const RegisterForm = () => {
             }}
           />
         </div>
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Input placeholder="Username..." type="text" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
         <FormField
           control={form.control}
           name="emailAddress"
