@@ -15,6 +15,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { ArrowRightFromLine } from "lucide-react";
+import { redirect } from "next/dist/server/api-utils";
 
 const formSchema = z
   .object({
@@ -54,7 +55,9 @@ const RegisterForm = () => {
     },
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = (data: any) => {
+    console.log(data);
+  };
 
   return (
     <Form {...form}>
