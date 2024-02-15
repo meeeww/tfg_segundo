@@ -15,6 +15,9 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { ArrowRightFromLine } from "lucide-react";
+import registerParams from "@/interfaces/registerParams";
+import { Toaster } from "@/components/ui/sonner"
+import { toast } from "sonner";
 
 const formSchema = z
   .object({
@@ -36,13 +39,11 @@ const formSchema = z
   )
   .refine(
     (data) => {
-      return false;
-    },
-    {
-      message: "Username is already taken",
-      path: ["userName"],
+      return data;
     }
   );
+
+
 
 const RegisterForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -54,12 +55,30 @@ const RegisterForm = () => {
     },
   });
 
-  const handleSubmit = () => {};
+  const onErrors = (error: any) => {
+    return (
+      toast("An error has occurred, please try again")
+    )
+  }
+
+  const handleSubmit = (data: any) => {
+    const params: registerParams = {
+      Nombre_Usuario: data.name,
+      Apellido_Usuario: data.surname,
+      Descripcion_Usuario: "",
+      Nick_Usuario: data.userName,
+      Email_Usuario: data.emailAddress,
+      Fecha_Creacion: 0,
+      Estado_Cuenta: 0,
+      Verificacion_Cuenta: 0,
+    };
+  };
+
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(handleSubmit)}
+        onSubmit={form.handleSubmit(onErrors)}
         className="max-w-md w-full flex flex-col gap-4 border rounded-md p-8 m-2"
       >
         <h3 className="text-xl font-semibold">Register</h3>
@@ -95,6 +114,21 @@ const RegisterForm = () => {
             }}
           />
         </div>
+        <FormField
+          control={form.control}
+          name="userName"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Input placeholder="Username..." type="text" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
         <FormField
           control={form.control}
           name="emailAddress"
