@@ -61,12 +61,17 @@ router.put("/update", [auth, self], async (req, res) => {
       datosSesion.Dispositivo,
     ];
 
-    db.query(updateSesionesQuery, parametros, (err, result) => {
-      if (err) {
-        return res.status(500).json({ success: false, mensaje: "Error al actualizar la sesión", error: err });
-      }
-      res.status(200).json({ success: true, mensaje: "Sesión actualizada con éxito", result: result });
-    });
+    if(parametros.some(parametro => parametro === null)){
+      res.status(400).json({ success: false, mensaje: "No se han proporcionado los datos necesarios" });
+    } else {
+      db.query(updateSesionesQuery, parametros, (err, result) => {
+        if (err) {
+          return res.status(500).json({ success: false, mensaje: "Error al actualizar la sesión", error: err });
+        }
+        res.status(200).json({ success: true, mensaje: "Sesión actualizada con éxito", result: result });
+      });
+    }
+    
   } catch (error) {
     res.status(500).json({ success: false, mensaje: "Error del servidor", error: error });
   }
