@@ -2,26 +2,47 @@
 const jwt = require("jsonwebtoken");
 
 // Importamos middlewares
+const auth = require("../../middleware/auth");
+const { admin, viewer, self } = require("../../middleware/roles");
 const db = require("../../middleware/db");
 
-function createToken(id, res) {
-  const sqlInsertToken = "INSERT INTO sesiones (ID_Usuario, Token_Sesion, Fecha_Inicio, Fecha_Expiracion, Dispositivo) VALUES (?, ?, ?, ?, ?)";
+// Importamos los modelos
+const sesionDTO = require("../../models/sesionDTO");
 
-  const token = jwt.sign({ id: id }, "jwtPrivateKey"); //creamos la token
-  let fechaAhora = Math.floor(new Date().getTime() / 1000);
-  let fechaExpiracion = new Date();
-  fechaExpiracion.setMonth(fechaExpiracion.getMonth() + 1);
-  fechaExpiracion = Math.floor(fechaExpiracion.getTime() / 1000);
-  let dispositivo = "Pruebas";
+// Importamos las queries
+const { createSesionQuery } = require("../../queries/sesionesDAL");
 
-  db.query(sqlInsertToken, [id, token, fechaAhora, fechaExpiracion, dispositivo], (err2, result2) => {
-    if (err2) {
-      res.send({ status: 500, sucess: false, reason: "Problema de base de datos.", error: err2 });
-    } else {
-      if (!result2.affectedRows) res.send({ status: 500, sucess: false, reason: "Problema de base de datos.", error: err2 });
-      res.send({ status: 200, sucess: true, token: token });
-    }
-  });
+// Importamos utils
+const getActualTime = require("../../utils/getActualTime");
+
+function createToken(req, res) {
+  try {
+    const sesion = sesionDTO.fromReqBody(req.body);
+
+    console.log(process.env.SECRETPASS)
+    const token = jwt.sign({ id: sesion.ID_Usuario }, process.env.SECRETPASS, { algorithm: "HS256" }); // falta añadir los roles
+
+    // Preparar los parámetros para la consulta SQL
+    const parametros = [
+      sesion.ID_Usuario,
+      token,
+      getActualTime(false),
+      getActualTime(true),
+      1,
+      0,
+      sesion.Dispositivo,
+    ];
+
+    db.query(createSesionQuery, parametros, (err, result) => {
+      if (err) {
+        return res.status(500).json({ success: false, mensaje: "Error al crear la sesión", error: err });
+      }
+      res.status(200).json({ success: true, mensaje: "Sesión creada con éxito", token: token, result: result });
+    });
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ success: false, mensaje: "Error del servidor", error: error });
+  }
 }
 
 module.exports = createToken;

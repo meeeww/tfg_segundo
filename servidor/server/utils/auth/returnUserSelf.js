@@ -1,7 +1,7 @@
 // Importamos middlewares
 const db = require("../../middleware/db");
 
-function returnUser(token, res) {
+function returnUserSelf(token, res) {
   let usuario = { info: {}, amigos: {}, servidores: {}, configuraciones: {} };
 
   const sqlToken = "SELECT ID_Usuario FROM sesiones WHERE Token_Sesion = ?";
@@ -46,4 +46,4 @@ function returnUser(token, res) {
     });
 }
 
-module.exports = returnUser;
+module.exports = returnUserSelf;
