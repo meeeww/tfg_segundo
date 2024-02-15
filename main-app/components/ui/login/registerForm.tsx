@@ -16,8 +16,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { ArrowRightFromLine } from "lucide-react";
 import registerParams from "@/interfaces/registerParams";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import { redirect } from "next/dist/server/api-utils";
 
 const formSchema = z
   .object({
@@ -37,13 +38,9 @@ const formSchema = z
       path: ["passwordConfirm"],
     }
   )
-  .refine(
-    (data) => {
-      return data;
-    }
-  );
-
-
+  .refine((data) => {
+    return data;
+  });
 
 const RegisterForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -56,10 +53,8 @@ const RegisterForm = () => {
   });
 
   const onErrors = (error: any) => {
-    return (
-      toast("An error has occurred, please try again")
-    )
-  }
+    return toast("An error has occurred, please try again");
+  };
 
   const handleSubmit = (data: any) => {
     const params: registerParams = {
@@ -73,7 +68,6 @@ const RegisterForm = () => {
       Verificacion_Cuenta: 0,
     };
   };
-
 
   return (
     <Form {...form}>
