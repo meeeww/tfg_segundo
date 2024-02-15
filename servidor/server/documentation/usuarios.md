@@ -95,7 +95,16 @@
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `usuario` | `object` | **Obligatorio**. Objeto del usuario |
+| `ID_Usuario` | `int` | **Obligatorio**. ID del usuario |
+| `Nombre_Usuario` | `string` | **Obligatorio**. Nombre del usuario |
+| `Apellido_Usuario` | `string` | **Obligatorio**. Apellido del usuario |
+| `Descripcion_Usuario` | `string` | **Obligatorio**. Descripcion del usuario |
+| `Nick_Usuario` | `string` | **Obligatorio**. Nick del usuario |
+| `Email_Usuario` | `string` | **Obligatorio**. Email del usuario |
+| `Foto_Usuario` | `string` | **Obligatorio**. URL de la imagen del usuario |
+| `Fecha_Creacion` | `int` | **Obligatorio**. Fecha de creación del usuario (epoch) |
+| `Estado_Cuenta` | `int` | **Obligatorio**. Estado del usuario |
+| `Verificacion_Cuenta` | `int` | **Obligatorio**. Estado de verificación del usuario |
 
 #### Modificar usuario a partir de su objeto
 
@@ -105,4 +114,13 @@
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `usuario` | `object` | **Obligatorio**. Objeto del usuario |
+| `ID_Usuario` | `int` | **Obligatorio**. ID del usuario |
+| `Nombre_Usuario` | `string` | **Obligatorio**. Nombre del usuario |
+| `Apellido_Usuario` | `string` | **Obligatorio**. Apellido del usuario |
+| `Descripcion_Usuario` | `string` | **Obligatorio**. Descripcion del usuario |
+| `Nick_Usuario` | `string` | **Obligatorio**. Nick del usuario |
+| `Email_Usuario` | `string` | **Obligatorio**. Email del usuario |
+| `Foto_Usuario` | `string` | **Obligatorio**. URL de la imagen del usuario |
+| `Fecha_Creacion` | `int` | **Obligatorio**. Fecha de creación del usuario (epoch) |
+| `Estado_Cuenta` | `int` | **Obligatorio**. Estado del usuario |
+| `Verificacion_Cuenta` | `int` | **Obligatorio**. Estado de verificación del usuario |

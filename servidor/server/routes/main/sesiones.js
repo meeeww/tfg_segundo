@@ -9,24 +9,12 @@ const { admin, viewer, self } = require("../../middleware/roles");
 const db = require("../../middleware/db");
 
 // Importamos los modelos
-const usuarioDTO = require("../../models/usuarioDTO");
+const sesionDTO = require("../../models/sesionDTO");
 
 // Importamos las queries
 const {
-  selectUsuariosQuery,
-  selectUsuarioQuery,
-  selectUsuarioNombreQuery,
-  selectUsuarioApellidoQuery,
-  selectUsuarioNickQuery,
-  selectUsuarioEmailQuery,
-  selectUsuarioFechaQuery,
-  selectUsuarioEstadoQuery,
-  selectUsuarioVerificacionQuery,
-  createUsuarioQuery,
-  updateUsuarioQuery,
-  updateUsuarioContraQuery,
-  deleteUsuarioQuery,
-} = require("../../queries/usuariosDAL");
+  updateSesionesQuery,
+} = require("../../queries/sesionesDAL");
 
 // Importamos utils
 const returnUserSelf = require("../../utils/auth/returnUserSelf");
@@ -48,20 +36,45 @@ router.get("/self", [auth, self], async (req, res) => {
   }
 });
 
-router.post("/register", async (req, res) => {
+router.post("/", async (req, res) => {
   // /sesiones/login
   // Registrar sesión, crear token
   createToken(req, res);
 });
 
-router.post("/login", async (req, res) => {
-  // /sesiones/login
-  // Iniciar sesión, crear token
-});
-
 router.put("/update", [auth, self], async (req, res) => {
   // /sesiones/update
-  // Actualizar usuario
+  // Actualizar sesion
+
+  try {
+    const datosSesion = sesionDTO.fromReqBody(req.body);
+
+    // Ajustar los parámetros según la consulta SQL
+    const parametros = [
+      datosSesion.ID_Sesion,
+      datosSesion.ID_Usuario,
+      datosSesion.Token_Sesion,
+      datosSesion.Fecha_Inicio,
+      datosSesion.Fecha_Expiracion,
+      datosSesion.Estado_Sesion,
+      datosSesion.Ultima_Actividad,
+      datosSesion.Dispositivo,
+    ];
+
+    if(parametros.some(parametro => parametro === null)){
+      res.status(400).json({ success: false, mensaje: "No se han proporcionado los datos necesarios" });
+    } else {
+      db.query(updateSesionesQuery, parametros, (err, result) => {
+        if (err) {
+          return res.status(500).json({ success: false, mensaje: "Error al actualizar la sesión", error: err });
+        }
+        res.status(200).json({ success: true, mensaje: "Sesión actualizada con éxito", result: result });
+      });
+    }
+    
+  } catch (error) {
+    res.status(500).json({ success: false, mensaje: "Error del servidor", error: error });
+  }
 });
 
 router.delete("/logout", [auth, self], async (req, res) => {});
