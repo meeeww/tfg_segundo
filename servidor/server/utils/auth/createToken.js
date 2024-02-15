@@ -19,6 +19,7 @@ function createToken(req, res) {
   try {
     const sesion = sesionDTO.fromReqBody(req.body);
 
+    console.log(process.env.SECRETPASS)
     const token = jwt.sign({ id: sesion.ID_Usuario }, process.env.SECRETPASS, { algorithm: "HS256" }); // falta añadir los roles
 
     // Preparar los parámetros para la consulta SQL
@@ -31,8 +32,6 @@ function createToken(req, res) {
       0,
       sesion.Dispositivo,
     ];
-
-    console.log(parametros)
 
     db.query(createSesionQuery, parametros, (err, result) => {
       if (err) {
